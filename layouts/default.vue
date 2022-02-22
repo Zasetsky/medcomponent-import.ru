@@ -3,33 +3,42 @@
     <v-app-bar app>
       <v-tabs
         fixed-tabs
-        background-color="indigo"
+        background-color="#0e1821"
         dark
       >
-        <v-tab>
-          Option
+        <v-tab to="/">
+          О нас
+        </v-tab>
+        <v-tab :to="tabs[1].route" exact>
+          Продукция
         </v-tab>
         <v-tab>
-          Another Selection
+          Услуги
         </v-tab>
         <v-tab>
-          Items
+          Документы
         </v-tab>
         <v-tab>
-          Another Screen
+          Контакты
         </v-tab>
+        <v-tab-item :value="tabs[0].route">
+          <v-container fluid>
+            <router-view />
+          </v-container>
+        </v-tab-item>
+
+        <v-tab-item :value="tabs[1].route">
+          <v-container fluid>
+            <router-view />
+          </v-container>
+        </v-tab-item>
       </v-tabs>
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
-    <v-main>
-      <v-container fluid>
-        <Nuxt />
-      </v-container>
-    </v-main>
 
     <v-footer app>
-      <!-- -->
+      <!--  -->
     </v-footer>
   </v-app>
 </template>
@@ -39,25 +48,11 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      activeTab: '/',
+      tabs: [
+        { route: '/' },
+        { route: '/product' }
+      ]
     }
   }
 }
